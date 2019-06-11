@@ -1,0 +1,96 @@
+import semillas.*
+
+test "menta de 1 metro da semillas y ocupa 3 metros cuadrados" {
+	const m = new Menta(anioDeObtencion = new Date(),altura = 1)
+	assert.that(m.daNuevasSemillas())
+	assert.equals(3,m.espacioOcupa())
+
+}
+
+test "menta de 0.3 metros no da semillas y ocupa 0.9 metros cuadrados" {
+	const m = new Menta(anioDeObtencion = new Date(),altura = 0.3)
+	assert.notThat(m.daNuevasSemillas())
+	assert.equals(0.9,m.espacioOcupa())
+
+}
+
+test "soja de de 0.6 metros, semilla del 2009. su tolerancia es de 7 horas, no da semillas y ocupa 0.3 m2"{
+	const s = new Soja(anioDeObtencion = new Date(3,5,2009),altura = 0.6)
+	assert.notThat(s.daNuevasSemillas())
+	assert.equals(7,s.tolerancia())
+	assert.equals(0.3,s.espacioOcupa())
+}
+
+test "planta de quinoa que tolera 12 horas de sol, su semilla de origen es de 2010, da semillas"{
+	const q = new Quinoa(anioDeObtencion = new Date (2,12,2010),tolerancia = 12, altura = 2)
+	assert.that(q.daNuevasSemillas())
+}
+test "planta de quinoa que tolera 9 horas de sol, su semilla de origen es de 2010, da semillas"{
+	const q = new Quinoa(anioDeObtencion = new Date (2,12,2001),tolerancia = 9, altura = 2)
+	assert.that(q.daNuevasSemillas())
+}
+
+test "hierbabuena de 1 metro da semillas y ocupa 6 metros cuadrados" {
+	const m = new HierbaBuena(anioDeObtencion = new Date(),altura = 1)
+	assert.that(m.daNuevasSemillas())
+	assert.equals(6,m.espacioOcupa())
+
+}
+test "sojatrans de 2 metros, semilla del 2009. su tolerancia es de 7 horas, no da semillas y ocupa 0.3 m2"{
+	const s = new SojaTrans(anioDeObtencion = new Date(3,5,2009),altura = 2)
+	assert.notThat(s.daNuevasSemillas())
+	assert.equals(9,s.tolerancia())
+	assert.equals(1,s.espacioOcupa())
+}
+test "Una parcela de 20 mts. de ancho por 1 mt. de largo que recibe 8 horas de sol por día, tiene una superficie de 20 m2 y la cantidad máxima de plantas que tolera es de 4."{
+	var p = new Parcela(ancho=20,largo=1,horasDeSol=8)
+	const s1 = new Soja(anioDeObtencion = new Date(3,5,2009),altura = 2)
+	const s2 = new Soja(anioDeObtencion = new Date(3,5,2009),altura = 2.5)
+	const s3 = new Soja(anioDeObtencion = new Date(3,5,2009),altura = 3)
+	const s4 = new Soja(anioDeObtencion = new Date(3,5,2009),altura = 1.5)
+	const s5 = new Soja(anioDeObtencion = new Date(3,5,2009),altura = 1.5)
+	assert.equals(20,p.superficie())
+	assert.equals(4,p.plantasMaximas())
+	p.plantar(s1)	
+	p.plantar(s2)
+	p.plantar(s3)
+	p.plantar(s4)
+	assert.throwsExceptionWithMessage("la parcela esta completa",{p.plantar(s5)})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
